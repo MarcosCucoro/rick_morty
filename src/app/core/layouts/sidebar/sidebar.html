@@ -1,0 +1,94 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidenav lateral -->
+  <mat-sidenav #sidenav mode="over" class="sidenav">
+    <mat-nav-list>
+      <div class="sidenav-header">
+        <mat-icon class="sidenav-logo">rocket_launch</mat-icon>
+        <h3>Menu</h3>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      @for (item of menuItems; track item.route) {
+      <a
+        mat-list-item
+        [routerLink]="item.route"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Conteúdo principal -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="toolbar-container">
+      <!-- Menu Button -->
+      <button matIconButton class="menu-button" aria-label="Menu" (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Logo e Título -->
+      <div class="logo-section">
+        <mat-icon class="logo-icon">rocket_launch</mat-icon>
+        <span class="title">{{ title }}</span>
+      </div>
+
+      <!-- Spacer para empurrar os botões para a direita -->
+      <span class="spacer"></span>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            placeholder="Search..."
+            [(ngModel)]="searchValue"
+            (ngModelChange)="onSearchChange($event)"
+          />
+          @if (searchValue) {
+            <button matSuffix mat-icon-button (click)="clearSearch()" aria-label="Clear search">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+        </mat-form-field>
+      </div>
+
+      <span class="spacer-small"></span>
+
+      <!-- Botões de ação -->
+      <div class="action-buttons">
+        <!-- Toggle Tema -->
+        <button
+          matIconButton
+          class="theme-button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="
+            themeService.isDarkMode() ? 'Mudar para tema claro' : 'Mudar para tema escuro'
+          "
+        >
+          @if (themeService.isDarkMode()) {
+          <mat-icon>light_mode</mat-icon>
+          } @else {
+          <mat-icon>dark_mode</mat-icon>
+          }
+        </button>
+
+        <!-- Usuário -->
+        <button matIconButton class="user-button" aria-label="Perfil do usuário">
+          <mat-icon>person</mat-icon>
+        </button>
+        <span class="user-name">Marcos Cucoro</span>
+      </div>
+    </mat-toolbar>
+
+    <!-- Conteúdo da página -->
+    <div class="content-area">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

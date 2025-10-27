@@ -1,59 +1,92 @@
-# RickMorty
+# Rick and Morty Universe 🛸
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Um projeto Angular 20 para explorar o multiverso de Rick and Morty usando a [Rick and Morty API](https://rickandmortyapi.com/).
 
-## Development server
+Este projeto foi gerado usando [Angular CLI](https://github.com/angular/angular-cli) versão 20.3.7 **sem instalação global**.
 
-To start a local development server, run:
+## Servidor de Desenvolvimento
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para iniciar o servidor local de desenvolvimento, execute:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Ou usando o Angular CLI diretamente (sem instalação global):
 
 ```bash
-ng generate --help
+npx ng serve
 ```
 
-## Building
+Uma vez que o servidor estiver rodando, abra seu navegador e navegue para `http://localhost:4200/`. A aplicação recarregará automaticamente sempre que você modificar algum arquivo fonte.
 
-To build the project run:
+## Gerando Código
+
+O Angular CLI inclui ferramentas poderosas de scaffolding. Para gerar um novo componente, execute:
 
 ```bash
-ng build
+npx ng generate component nome-do-componente
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para uma lista completa de schematics disponíveis (como `components`, `directives` ou `pipes`), execute:
 
 ```bash
-ng test
+npx ng generate --help
 ```
 
-## Running end-to-end tests
+## Build do Projeto
 
-For end-to-end (e2e) testing, run:
+Para fazer o build do projeto, execute:
 
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Ou:
 
-## Additional Resources
+```bash
+npx ng build
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Isso compilará seu projeto e armazenará os artefatos de build no diretório `dist/`. Por padrão, o build de produção otimiza sua aplicação para performance e velocidade.
+
+## Executando Testes Unitários
+
+Para executar testes unitários com o test runner [Karma](https://karma-runner.github.io), use:
+
+```bash
+npm test
+```
+
+Ou:
+
+```bash
+npx ng test
+```
+
+## Executando Testes E2E
+
+Para testes end-to-end (e2e), execute:
+
+```bash
+npx ng e2e
+```
+
+O Angular CLI não vem com um framework de testes e2e por padrão. Você pode escolher um que atenda suas necessidades.
+
+## Recursos Adicionais
+
+- [Rick and Morty API Documentation](https://rickandmortyapi.com/documentation)
+- [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
+- [Angular Documentation](https://angular.dev)
+
+## Sobre o Projeto
+
+Este é um projeto educacional para explorar:
+- **Angular 20** (mais recente versão)
+- **Server-Side Rendering (SSR)**
+- **Consumo de APIs REST**
+- **Gerenciamento de estado**
+- **Roteamento e navegação**
+
+**Wubba Lubba Dub Dub!** 🚀

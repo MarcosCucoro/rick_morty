@@ -1,0 +1,119 @@
+<div class="character-details-container">
+  <!-- Header com botão voltar -->
+  <div class="header">
+    <button mat-button class="back-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="60"></mat-spinner>
+      <p>Loading character...</p>
+    </div>
+  }
+
+  <!-- Error -->
+  @if (error() && !loading()) {
+    <div class="error">
+      <mat-icon class="error-icon">error_outline</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="retry()">
+        <mat-icon>refresh</mat-icon>
+        Try Again
+      </button>
+    </div>
+  }
+
+  <!-- Character Details -->
+  @if (character() && !loading()) {
+    <mat-card class="details-card">
+      <div class="card-content">
+        <!-- Imagem -->
+        <div class="image-section">
+          <img [src]="character()!.image" [alt]="character()!.name" />
+          <div class="created-info">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Created: {{ character()!.created | date: 'MM/dd/yyyy' }}</span>
+          </div>
+        </div>
+
+        <!-- Informações -->
+        <div class="info-section">
+          <!-- Nome e Status -->
+          <div class="title-section">
+            <h1>{{ character()!.name }}</h1>
+            <div class="status-badges">
+              <mat-chip class="status-chip" [class]="character()!.status.toLowerCase()">
+                {{ character()!.status }}
+              </mat-chip>
+              <mat-chip class="species-chip">
+                {{ character()!.species }}
+              </mat-chip>
+            </div>
+          </div>
+
+          <!-- Grid de Informações em 2 colunas -->
+          <div class="info-grid">
+            <!-- Coluna 1: Information -->
+            <div class="info-column">
+              <h3>Information</h3>
+
+              <div class="info-item">
+                <span class="label">Gender</span>
+                <span class="value">{{ character()!.gender }}</span>
+              </div>
+
+              <div class="info-item">
+                <span class="label">Species</span>
+                <span class="value">{{ character()!.species }}</span>
+              </div>
+            </div>
+
+            <!-- Coluna 2: Locations -->
+            <div class="info-column">
+              <h3>Locations</h3>
+
+              <div class="info-item">
+                <span class="label">Origin</span>
+                <span class="value">
+                  <mat-icon class="location-icon">public</mat-icon>
+                  {{ character()!.origin.name }}
+                </span>
+              </div>
+
+              <div class="info-item">
+                <span class="label">Last Known Location</span>
+                <span class="value">
+                  <mat-icon class="location-icon">location_on</mat-icon>
+                  {{ character()!.location.name }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Episodes -->
+          <div class="episodes-section">
+            <h3>Episodes</h3>
+            <p class="episodes-count">Appeared in {{ character()!.episode.length }} episodes</p>
+
+            <div class="episodes-chips">
+              @for (episodeUrl of getFirstEpisodes(); track episodeUrl) {
+                <mat-chip class="episode-chip">
+                  #{{ getEpisodeNumber(episodeUrl) }}
+                </mat-chip>
+              }
+              @if (character()!.episode.length > 12) {
+                <mat-chip class="more-chip">
+                  +{{ character()!.episode.length - 12 }}
+                </mat-chip>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>

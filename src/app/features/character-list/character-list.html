@@ -1,0 +1,63 @@
+<div class="character-list-container">
+  <h1>Characters</h1>
+
+  <!-- Loading inicial -->
+  @if (loading()) {
+  <div class="loading">
+    <p>Loading characters...</p>
+  </div>
+  }
+
+  <!-- Error -->
+  @if (error()) {
+  <div class="error">
+    <p>{{ error() }}</p>
+    <button (click)="retry()">Try Again</button>
+  </div>
+  }
+
+  <!-- Characters Grid -->
+  @if (!loading() && !error() && characters().length > 0) {
+    <div class="characters-grid">
+      @for (character of characters(); track character.id) {
+        <mat-card class="character-card">
+          <img mat-card-image [src]="character.image" [alt]="character.name">
+          <mat-card-content>
+            <div class="character-header">
+              <h3>{{ character.name }}</h3>
+              <mat-chip class="status-chip" [class]="character.status.toLowerCase()">
+                {{ character.status }}
+              </mat-chip>
+            </div>
+            <p class="species">{{ character.species }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" class="view-details-btn" [routerLink]="['/characters/', character.id]">
+              <mat-icon>visibility</mat-icon>
+              View Details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+
+  <!-- Loading More -->
+  @if (loadingMore()) {
+  <div class="loading-more">
+    <p>Loading more characters...</p>
+  </div>
+  }
+
+  <!-- Scroll Trigger (elemento invisível para detectar o scroll) -->
+  @if (hasMore()) {
+  <div #scrollTrigger class="scroll-trigger"></div>
+  }
+
+  <!-- End Message -->
+  @if (!hasMore() && !loadingMore()) {
+  <div class="end-message">
+    <p>🎉 You've seen all {{ characters().length }} characters!</p>
+  </div>
+  }
+  }
+</div>
