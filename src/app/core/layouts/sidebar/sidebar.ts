@@ -1,15 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, viewChild } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ThemeService } from '../../services/theme.service';
 import { SearchService } from '../../services/search.service';
@@ -18,15 +9,7 @@ import { SearchService } from '../../services/search.service';
   selector: 'app-sidebar',
   imports: [
     CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatDividerModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     RouterLink,
     RouterLinkActive
   ],
@@ -34,29 +17,33 @@ import { SearchService } from '../../services/search.service';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-  protected readonly title = 'Rick and Morty Universe';
+  protected readonly title = 'Rick & Morty';
   protected themeService = inject(ThemeService);
   protected searchService = inject(SearchService);
-
-  // ViewChild para acessar o sidenav
-  sidenav = viewChild.required<MatSidenav>('sidenav');
 
   // Search value
   searchValue = '';
 
-  // Links do menu
+  // Links do menu com ícones do Bootstrap Icons
   protected menuItems = [
-    { label: 'Characters', icon: 'people', route: '/characters' },
-    { label: 'Locations', icon: 'location_on', route: '/locations' },
-    { label: 'Episodes', icon: 'movie', route: '/episodes' }
+    { label: 'Characters', icon: 'bi-people-fill', route: '/character' },
+    { label: 'Locations', icon: 'bi-geo-alt-fill', route: '/location' },
+    { label: 'Episodes', icon: 'bi-film', route: '/episode' }
   ];
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
   }
 
-  protected toggleSidenav(): void {
-    this.sidenav().toggle();
+  closeOffcanvas(): void {
+    // Fecha o offcanvas programaticamente
+    const offcanvasElement = document.getElementById('sidebarMenu');
+    if (offcanvasElement) {
+      const bsOffcanvas = (window as any).bootstrap?.Offcanvas?.getInstance(offcanvasElement);
+      if (bsOffcanvas) {
+        bsOffcanvas.hide();
+      }
+    }
   }
 
   onSearchChange(value: string): void {

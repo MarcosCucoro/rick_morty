@@ -1,24 +1,21 @@
-import { Component, inject, OnInit, signal, ElementRef, viewChild, AfterViewInit, DestroyRef } from '@angular/core';
-import { CharacterService } from '../../core/services/character.service';
-import { Character } from '../../shared/models/character.model';
 import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, DestroyRef, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { SearchService } from '../../core/services/search.service';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { RouterLink } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { LocationService } from '../../core/services/location.service';
+import { SearchService } from '../../core/services/search.service';
+import { Location } from '../../shared/models/location.model';
 
 @Component({
-  selector: 'app-character-list',
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink],
-  templateUrl: './character-list.html',
-  styleUrl: './character-list.scss',
+  selector: 'app-location-list',
+  imports: [CommonModule, RouterLink],
+  templateUrl: './location-list.html',
+  styleUrl: './location-list.scss',
 })
-export class CharacterList implements OnInit, AfterViewInit {
-  private characterService = inject(CharacterService);
+export class LocationList implements OnInit, AfterViewInit {
+  private locationService = inject(LocationService);
   private searchService = inject(SearchService);
   private destroyRef = inject(DestroyRef);
 
@@ -26,7 +23,7 @@ export class CharacterList implements OnInit, AfterViewInit {
   scrollTrigger = viewChild<ElementRef>('scrollTrigger');
 
   // Signals para gerenciar estado
-  characters = signal<Character[]>([]);
+  locations = signal<Location[]>([]);
   loading = signal<boolean>(false);
   loadingMore = signal<boolean>(false);
   error = signal<string | null>(null);
@@ -38,7 +35,7 @@ export class CharacterList implements OnInit, AfterViewInit {
   private totalPages = 1;
 
   ngOnInit(): void {
-    this.loadCharacters();
+    this.loadLocations();
     this.setupSearchListener();
   }
 
@@ -55,26 +52,26 @@ export class CharacterList implements OnInit, AfterViewInit {
       )
       .subscribe((term) => {
         this.searchTerm.set(term);
-        this.searchCharacters(term);
+        this.searchLocations(term);
       });
   }
 
-  private searchCharacters(term: string): void {
+  private searchLocations(term: string): void {
     this.loading.set(true);
     this.error.set(null);
     this.currentPage = 1;
 
     if (!term.trim()) {
       // Se a busca estiver vazia, carrega todos os Characters
-      this.loadCharacters();
+      this.loadLocations();
       return;
     }
 
-    this.characterService.getCharactersWithFilters({ name: term }, 1)
+    this.locationService.getLocationsWithFilters({ name: term }, 1)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          this.characters.set(response.results);
+          this.locations.set(response.results);
           this.totalPages = response.info.pages;
           this.hasMore.set(this.currentPage < this.totalPages);
           this.loading.set(false);
@@ -82,10 +79,10 @@ export class CharacterList implements OnInit, AfterViewInit {
         error: (err) => {
           console.error('Erro na busca:', err);
           if (err.status === 404) {
-            this.characters.set([]);
-            this.error.set('No characters found with that name.');
+            this.locations.set([]);
+            this.error.set('No locations found with that name.');
           } else {
-            this.error.set('Error searching characters. Please try again.');
+            this.error.set('Error searching locations. Please try again.');
           }
           this.loading.set(false);
         }
@@ -95,57 +92,52 @@ export class CharacterList implements OnInit, AfterViewInit {
   private setupInfiniteScroll(): void {
     const trigger = this.scrollTrigger();
     if (!trigger) {
-      console.warn('[CharacterList] Scroll trigger element not found');
-      // Tenta novamente após um delay
+      console.warn('[LocationList] Scroll trigger element not found');
       setTimeout(() => this.setupInfiniteScroll(), 500);
       return;
     }
 
-    console.log('[CharacterList] Setting up IntersectionObserver');
+    console.log('[LocationList] Setting up IntersectionObserver');
 
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
-        console.log('[CharacterList] Intersection event:', {
+        console.log('[LocationList] Intersection event:', {
           isIntersecting: first.isIntersecting,
           loading: this.loading(),
           loadingMore: this.loadingMore(),
-          hasMore: this.hasMore(),
-          currentPage: this.currentPage,
-          totalPages: this.totalPages
+          hasMore: this.hasMore()
         });
 
         if (first.isIntersecting && !this.loading() && !this.loadingMore() && this.hasMore()) {
-          console.log('[CharacterList] Triggering loadMoreCharacters');
-          this.loadMoreCharacters();
+          console.log('[LocationList] Triggering loadMoreLocations');
+          this.loadMoreLocations();
         }
       },
       {
         threshold: 0.1,
-        rootMargin: '300px' // Aumentado para carregar antes
+        rootMargin: '300px'
       }
     );
 
     observer.observe(trigger.nativeElement);
-    console.log('[CharacterList] Observer attached to element');
 
     // Cleanup quando o componente for destruído
     this.destroyRef.onDestroy(() => {
-      console.log('[CharacterList] Cleaning up observer');
       observer.disconnect();
     });
   }
 
-  loadCharacters(): void {
+  loadLocations(): void {
     this.loading.set(true);
     this.error.set(null);
     this.currentPage = 1;
 
-    this.characterService.getCharacters(1)
+    this.locationService.getLocations(1)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          this.characters.set(response.results);
+          this.locations.set(response.results);
           this.totalPages = response.info.pages;
           this.hasMore.set(this.currentPage < this.totalPages);
           this.loading.set(false);
@@ -158,7 +150,7 @@ export class CharacterList implements OnInit, AfterViewInit {
       });
   }
 
-  loadMoreCharacters(): void {
+  loadMoreLocations(): void {
     if (this.currentPage >= this.totalPages) {
       this.hasMore.set(false);
       return;
@@ -169,15 +161,15 @@ export class CharacterList implements OnInit, AfterViewInit {
 
     const searchTerm = this.searchTerm();
     const request$ = searchTerm
-      ? this.characterService.getCharactersWithFilters({ name: searchTerm }, this.currentPage)
-      : this.characterService.getCharacters(this.currentPage);
+      ? this.locationService.getLocationsWithFilters({ name: searchTerm }, this.currentPage)
+      : this.locationService.getLocations(this.currentPage);
 
     request$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
           // Adiciona os novos Characters aos existentes
-          this.characters.update(current => [...current, ...response.results]);
+          this.locations.update(current => [...current, ...response.results]);
           this.hasMore.set(this.currentPage < this.totalPages);
           this.loadingMore.set(false);
         },
@@ -192,9 +184,11 @@ export class CharacterList implements OnInit, AfterViewInit {
   retry(): void {
     const searchTerm = this.searchTerm();
     if (searchTerm) {
-      this.searchCharacters(searchTerm);
+      this.searchLocations(searchTerm);
     } else {
-      this.loadCharacters();
+      this.loadLocations();
     }
   }
+
+
 }

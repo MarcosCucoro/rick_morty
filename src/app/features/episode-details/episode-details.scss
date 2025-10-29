@@ -22,7 +22,14 @@
   color: var(--card-foreground) !important;
   border-color: var(--border) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+
+  .bi-people-fill {
+    font-size: 2rem;
+    color: var(--sidebar-primary);
+  }
 }
+
+
 
 // Image Section
 .image-section {
@@ -32,22 +39,17 @@
 }
 
 // Status Badges
-.badge-alive {
-  background-color: var(--status-alive-bg) !important;
+.status-badge {
+  // background-color: var(--status-alive-bg) !important;
   color: var(--status-alive-text) !important;
   font-size: 0.875rem;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 10%;
 }
 
-.badge-dead {
-  background-color: var(--status-dead-bg) !important;
-  color: var(--status-dead-text) !important;
-  font-size: 0.875rem;
-}
-
-.badge-unknown {
-  background-color: var(--status-unknown-bg) !important;
-  color: var(--status-unknown-text) !important;
-  font-size: 0.875rem;
+.bi-film {
+  font-size: 1.5rem;
+  color: var(--sidebar-primary);
 }
 
 .bg-secondary {

@@ -1,94 +1,108 @@
-<mat-sidenav-container class="sidenav-container">
-  <!-- Sidenav lateral -->
-  <mat-sidenav #sidenav mode="over" class="sidenav">
-    <mat-nav-list>
-      <div class="sidenav-header">
-        <mat-icon class="sidenav-logo">rocket_launch</mat-icon>
-        <h3>Menu</h3>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container-fluid">
+    <!-- Offcanvas Toggle (Mobile) -->
+    <button class="btn btn-link text-decoration-none p-0 me-3" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+      <i class="bi bi-list fs-3 text-sidebar"></i>
+    </button>
+
+    <!-- Logo e Título -->
+    <a class="navbar-brand d-flex align-items-center gap-2 mb-0" [routerLink]="['/']">
+      <i class="bi bi-rocket-takeoff fs-4"></i>
+      <span class="fw-semibold d-none d-md-inline">{{ title }}</span>
+    </a>
+
+    <!-- Search Bar (Desktop) -->
+    <form class="d-none d-lg-flex mx-auto" style="max-width: 400px; flex: 1;">
+      <div class="input-group">
+        <span class="input-group-text bg-transparent border-end-0">
+          <i class="bi bi-search text-muted"></i>
+        </span>
+        <input type="search" class="form-control border-start-0 ps-0" placeholder="Search..." [(ngModel)]="searchValue"
+          (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}">
+        @if (searchValue) {
+        <button class="btn btn-link text-decoration-none" type="button" (click)="clearSearch()">
+          <i class="bi bi-x-lg text-muted"></i>
+        </button>
+        }
       </div>
+    </form>
 
-      <mat-divider></mat-divider>
-
-      @for (item of menuItems; track item.route) {
-      <a
-        mat-list-item
-        [routerLink]="item.route"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
-        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        <span matListItemTitle>{{ item.label }}</span>
-      </a>
-      }
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <!-- Conteúdo principal -->
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolbar-container">
-      <!-- Menu Button -->
-      <button matIconButton class="menu-button" aria-label="Menu" (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
+    <!-- Action Buttons -->
+    <div class="d-flex align-items-center">
+      <!-- Theme Toggle -->
+      <button class="btn btn-link text-decoration-none p-2" type="button" (click)="toggleTheme()"
+        [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+        @if (themeService.isDarkMode()) {
+        <i class="bi bi-sun-fill fs-5"></i>
+        } @else {
+        <i class="bi bi-moon-fill fs-5"></i>
+        }
       </button>
 
-      <!-- Logo e Título -->
-      <div class="logo-section">
-        <mat-icon class="logo-icon">rocket_launch</mat-icon>
-        <span class="title">{{ title }}</span>
-      </div>
-
-      <!-- Spacer para empurrar os botões para a direita -->
-      <span class="spacer"></span>
-
-      <!-- Search Bar -->
-      <div class="search-container">
-        <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
-          <mat-icon matPrefix>search</mat-icon>
-          <input
-            matInput
-            placeholder="Search..."
-            [(ngModel)]="searchValue"
-            (ngModelChange)="onSearchChange($event)"
-          />
-          @if (searchValue) {
-            <button matSuffix mat-icon-button (click)="clearSearch()" aria-label="Clear search">
-              <mat-icon>close</mat-icon>
-            </button>
-          }
-        </mat-form-field>
-      </div>
-
-      <span class="spacer-small"></span>
-
-      <!-- Botões de ação -->
-      <div class="action-buttons">
-        <!-- Toggle Tema -->
-        <button
-          matIconButton
-          class="theme-button"
-          (click)="toggleTheme()"
-          [attr.aria-label]="
-            themeService.isDarkMode() ? 'Mudar para tema claro' : 'Mudar para tema escuro'
-          "
-        >
-          @if (themeService.isDarkMode()) {
-          <mat-icon>light_mode</mat-icon>
-          } @else {
-          <mat-icon>dark_mode</mat-icon>
-          }
+      <div class="dropdown">
+        <button class="btn btn-link text-decoration-none d-flex align-items-center p-2 gap-2 dropdown-toggle"
+          type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle fs-5 text-sidebar"></i>
+          <span class="fw-medium d-none d-xl-inline text-sidebar">Marcos Cucoro</span>
         </button>
-
-        <!-- Usuário -->
-        <button matIconButton class="user-button" aria-label="Perfil do usuário">
-          <mat-icon>person</mat-icon>
-        </button>
-        <span class="user-name">Marcos Cucoro</span>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Log out</a></li>
+        </ul>
       </div>
-    </mat-toolbar>
-
-    <!-- Conteúdo da página -->
-    <div class="content-area">
-      <ng-content></ng-content>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+
+  <!-- Search Bar Mobile -->
+  <div class="container-fluid d-lg-none mt-2 pb-2">
+    <div class="input-group">
+      <span class="input-group-text bg-transparent border-end-0">
+        <i class="bi bi-search text-muted"></i>
+      </span>
+      <input type="search" class="form-control border-start-0 ps-0" placeholder="Search..." [(ngModel)]="searchValue"
+        (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}">
+      @if (searchValue) {
+      <button class="btn btn-link text-decoration-none" type="button" (click)="clearSearch()">
+        <i class="bi bi-x-lg text-muted"></i>
+      </button>
+      }
+    </div>
+  </div>
+</nav>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+  <div class="offcanvas-header border-bottom">
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-rocket-takeoff fs-4" style="color: var(--sidebar-primary);"></i>
+      <h5 class="offcanvas-title mb-0 text-sidebar" id="sidebarMenuLabel">Menu</h5>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <ul class="nav nav-pills flex-column">
+      @for (item of menuItems; track item.route) {
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-3 px-4 py-3"
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          (click)="closeOffcanvas()">
+          <i class="bi {{ item.icon }} fs-5"></i>
+          <span>{{ item.label }}</span>
+        </a>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="content-wrapper">
+  <ng-content></ng-content>
+</div>

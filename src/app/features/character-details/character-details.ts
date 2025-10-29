@@ -1,26 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../../core/services/character.service';
 import { Character } from '../../shared/models/character.model';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-character-details',
   imports: [
-    CommonModule,
-    RouterLink,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatProgressSpinnerModule
+    CommonModule
   ],
   templateUrl: './character-details.html',
   styleUrl: './character-details.scss',
@@ -58,7 +45,7 @@ export class CharacterDetails implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/characters']);
+    this.router.navigate(['/character']);
   }
 
   retry(): void {

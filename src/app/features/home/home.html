@@ -1,0 +1,166 @@
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <!-- Portal Animation -->
+          <div class="portal-container mb-4">
+            <div class="portal-ring"></div>
+            <div class="portal-ring portal-ring-2"></div>
+            <div class="portal-ring portal-ring-3"></div>
+          </div>
+
+          <h1 class="hero-title display-1 fw-bold mb-4">
+            Welcome to the
+            <span class="text-primary d-block">Rick and Morty Universe</span>
+          </h1>
+
+          <p class="hero-subtitle lead fs-3 mb-5">
+            Explore infinite dimensions, unique characters and interdimensional adventures!
+          </p>
+
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <button (click)="navigateAndScroll('/character')" class="btn btn-primary btn-lg px-5 py-3 shadow-lg">
+              <i class="bi bi-people-fill me-2"></i>Explore Characters
+            </button>
+            <button (click)="navigateAndScroll('/location')" class="btn btn-outline-primary btn-lg px-5 py-3">
+              <i class="bi bi-geo-alt-fill me-2"></i>View Locations
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="features-section py-5">
+  <div class="container py-5">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="display-4 fw-bold mb-3">What You'll Find</h2>
+        <p class="lead text-muted">Dive into the craziest multiverse on TV!</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Feature 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+          <div class="card-body p-4">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-people-fill display-3 text-primary"></i>
+            </div>
+            <h3 class="card-title h4 fw-bold mb-3">Characters</h3>
+            <p class="card-text text-muted">
+              Meet all the characters from the series, from the protagonists to the most obscure inhabitants of the multiverse.
+              Over 800 characters cataloged with detailed information!
+            </p>
+            <button (click)="navigateAndScroll('/character')" class="btn btn-link text-primary p-0 text-decoration-none fw-semibold">
+              View all Characters <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+          <div class="card-body p-4">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-geo-alt-fill display-3 text-success"></i>
+            </div>
+            <h3 class="card-title h4 fw-bold mb-3">Locations</h3>
+            <p class="card-text text-muted">
+              Explore the different dimensions and planets visited by Rick and Morty.
+              From Earth C-137 to the most bizarre locations in infinity!
+            </p>
+            <button (click)="navigateAndScroll('/location')" class="btn btn-link text-success p-0 text-decoration-none fw-semibold">
+              Explore Locations <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+          <div class="card-body p-4">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-film display-3 text-warning"></i>
+            </div>
+            <h3 class="card-title h4 fw-bold mb-3">Episodes</h3>
+            <p class="card-text text-muted">
+              Relive all seasons and episodes of the series.
+              Complete information about each episode, including characters and locations that appear!
+            </p>
+            <button (click)="navigateAndScroll('/episode')" class="btn btn-link text-warning p-0 text-decoration-none fw-semibold">
+              View Episodes <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section py-5">
+  <div class="container py-5">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <i class="bi bi-people-fill display-4 text-primary mb-3"></i>
+          <h3 class="display-4 fw-bold text-primary mb-2">800+</h3>
+          <p class="text-muted fw-semibold">Characters</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <i class="bi bi-geo-alt-fill display-4 text-success mb-3"></i>
+          <h3 class="display-4 fw-bold text-success mb-2">100+</h3>
+          <p class="text-muted fw-semibold">Locations</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <i class="bi bi-film display-4 text-warning mb-3"></i>
+          <h3 class="display-4 fw-bold text-warning mb-2">50+</h3>
+          <p class="text-muted fw-semibold">Episodes</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <i class="bi bi-infinity display-4 text-danger mb-3"></i>
+          <h3 class="display-4 fw-bold text-danger mb-2">∞</h3>
+          <p class="text-muted fw-semibold">Dimensions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section py-5">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="cta-card card border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="card-body p-5">
+            <i class="bi bi-rocket-takeoff display-1 text-primary mb-4"></i>
+            <h2 class="display-5 fw-bold mb-4">Ready for Adventure?</h2>
+            <p class="lead text-muted mb-4">
+              Wubba Lubba Dub Dub! Start your journey through the multiverse right now!
+            </p>
+            <button (click)="navigateAndScroll('/character')" class="btn btn-primary btn-lg px-5 py-3 shadow">
+              <i class="bi bi-arrow-right-circle-fill me-2"></i>Start Exploration
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

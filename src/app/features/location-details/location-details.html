@@ -1,0 +1,87 @@
+<div class="container-fluid py-4">
+  <!-- Header com botão voltar -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <button type="button" class="btn btn-outline-info" (click)="goBack()"><i
+          class="bi bi-arrow-left me-2"></i>Back</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 text-muted fs-5">Loading location...</p>
+  </div>
+  }
+
+  <!-- Error -->
+  @if (error() && !loading()) {
+  <div class="text-center py-5">
+    <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 4rem;"></i>
+    <p class="mt-3 text-muted fs-5">{{ error() }}</p>
+    <button class="btn btn-primary mt-3" (click)="retry()">
+      <i class="bi bi-arrow-clockwise me-2"></i>Try Again
+    </button>
+  </div>
+  }
+
+  <!-- location Details -->
+  @if (location() && !loading()) {
+  <div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body p-4">
+      <div class="row g-4">
+        <div class="col-12 col-lg-8 col-xl-9">
+          <div class="mb-4">
+            <div class="d-flex flex-column gap-2">
+              <span>{{ location()!.name }}</span>
+              <div class="d-flex gap-2">
+                <span class="fw-semibold badge status-badge">{{ location()!.type }}</span>
+                <span class="fw-semibold badge bg-secondary d-flex gap-1 "><i class="bi bi-globe"></i>{{
+                  location()!.dimension }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-12 col-md-6">
+              <h3 class="h5 fw-semibold mb-3">Details</h3>
+
+              <div class="mb-3">
+                <p class="small text-muted mb-1">Type</p>
+                <p class="fw-semibold mb-0">{{ location()!.type }}</p>
+              </div>
+
+              <div class="mb-3">
+                <p class="small text-muted mb-1">Dimension</p>
+                <p class="fw-semibold mb-0">{{ location()!.dimension }}</p>
+              </div>
+
+              <div class="mb-3">
+                <p class="small text-muted mb-1">Created</p>
+                <p class="fw-semibold mb-0">{{ location()!.created | date }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <h3 class="h5 fw-semibold mb-3">Residents</h3>
+
+              <div class="card w-75 mb-3">
+                <div class="card-body bg-secondary d-flex align-items-center gap-3">
+                  <i class="bi bi-people-fill"></i>
+                  <div>
+                    <h5 class="card-title">{{ location()?.residents?.length }} residents</h5>
+                    <p class="card-text">known to reside here</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

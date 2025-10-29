@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LocationFilters, LocationResponse } from '../../shared/models/location.model';
+import { Location, LocationFilters, LocationResponse } from '../../shared/models/location.model';
 
 @Injectable({
   providedIn: 'root'
