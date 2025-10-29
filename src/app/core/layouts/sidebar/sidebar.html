@@ -1,19 +1,15 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
   <div class="container-fluid">
-    <!-- Offcanvas Toggle (Mobile) -->
     <button class="btn btn-link text-decoration-none p-0 me-3" type="button" data-bs-toggle="offcanvas"
       data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
       <i class="bi bi-list fs-3 text-sidebar"></i>
     </button>
 
-    <!-- Logo e Título -->
     <a class="navbar-brand d-flex align-items-center gap-2 mb-0" [routerLink]="['/']">
       <i class="bi bi-rocket-takeoff fs-4"></i>
       <span class="fw-semibold d-none d-md-inline">{{ title }}</span>
     </a>
 
-    <!-- Search Bar (Desktop) -->
     <form class="d-none d-lg-flex mx-auto" style="max-width: 400px; flex: 1;">
       <div class="input-group">
         <span class="input-group-text bg-transparent border-end-0">
@@ -29,9 +25,7 @@
       </div>
     </form>
 
-    <!-- Action Buttons -->
     <div class="d-flex align-items-center">
-      <!-- Theme Toggle -->
       <button class="btn btn-link text-decoration-none p-2" type="button" (click)="toggleTheme()"
         [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
         @if (themeService.isDarkMode()) {
@@ -53,13 +47,12 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="#">Log out</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/login']">Log out</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Search Bar Mobile -->
   <div class="container-fluid d-lg-none mt-2 pb-2">
     <div class="input-group">
       <span class="input-group-text bg-transparent border-end-0">
@@ -76,7 +69,6 @@
   </div>
 </nav>
 
-<!-- Offcanvas Sidebar -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
   <div class="offcanvas-header border-bottom">
     <div class="d-flex align-items-center gap-2">
@@ -102,7 +94,6 @@
   </div>
 </div>
 
-<!-- Main Content -->
 <div class="content-wrapper">
   <ng-content></ng-content>
 </div>

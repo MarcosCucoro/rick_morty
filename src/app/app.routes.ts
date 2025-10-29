@@ -7,9 +7,11 @@ import { Home } from './features/home/home';
 import { LocationDetails } from './features/location-details/location-details';
 import { LocationList } from './features/location-list/location-list';
 import { EpisodeDetails } from './features/episode-details/episode-details';
+import { Login } from './features/login/login';
 
 export const routes: Routes = [
-  { path: '', component: Home },
+  { path: '', component: Login },
+  { path: 'home', component: Home },
   { path: 'character', component: CharacterList },
   { path: 'character/:id', component: CharacterDetails },
   { path: 'location', component: LocationList },

@@ -21,10 +21,8 @@ export class Sidebar {
   protected themeService = inject(ThemeService);
   protected searchService = inject(SearchService);
 
-  // Search value
   searchValue = '';
 
-  // Links do menu com ícones do Bootstrap Icons
   protected menuItems = [
     { label: 'Characters', icon: 'bi-people-fill', route: '/character' },
     { label: 'Locations', icon: 'bi-geo-alt-fill', route: '/location' },
@@ -36,7 +34,6 @@ export class Sidebar {
   }
 
   closeOffcanvas(): void {
-    // Fecha o offcanvas programaticamente
     const offcanvasElement = document.getElementById('sidebarMenu');
     if (offcanvasElement) {
       const bsOffcanvas = (window as any).bootstrap?.Offcanvas?.getInstance(offcanvasElement);
