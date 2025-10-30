@@ -5,7 +5,7 @@
       <i class="bi bi-list fs-3 text-sidebar"></i>
     </button>
 
-    <a class="navbar-brand d-flex align-items-center gap-2 mb-0" [routerLink]="['/home']">
+    <a class="navbar-brand d-flex align-items-center gap-2 mb-0" [routerLink]="['/']">
       <i class="bi bi-rocket-takeoff fs-4"></i>
       <span class="fw-semibold d-none d-md-inline">{{ title }}</span>
     </a>
@@ -39,15 +39,14 @@
         <button class="btn btn-link text-decoration-none d-flex align-items-center p-2 gap-2 dropdown-toggle"
           type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-person-circle fs-5 text-sidebar"></i>
-          <span class="fw-medium d-none d-xl-inline text-sidebar">Marcos Cucoro</span>
+          <span class="fw-medium d-none d-xl-inline text-sidebar">{{ userInfo.username }}</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><button class="dropdown-item" [routerLink]="['/profile-user']">Profile</button></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" [routerLink]="['']">Log out</a></li>
+          <li><button class="dropdown-item" (click)="onSignout()">Sign out</button></li>
         </ul>
       </div>
     </div>

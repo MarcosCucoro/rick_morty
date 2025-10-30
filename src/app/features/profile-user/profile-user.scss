@@ -1,0 +1,144 @@
+// Profile User - Bootstrap Version
+
+// Container
+.container-fluid {
+  max-width: 1400px;
+  min-height: calc(100vh - 68px);
+}
+
+// Back Button
+.btn-link {
+  color: var(--foreground) !important;
+  font-size: 1rem;
+
+  &:hover {
+    color: var(--primary) !important;
+  }
+}
+
+// Card
+.card {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+// Avatar Section
+.image-section {
+  .avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 181, 204, 0.3);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Badges
+.badge {
+  font-size: 0.875rem;
+
+  &.bg-primary {
+    background-color: var(--primary) !important;
+    color: white !important;
+  }
+
+  &.bg-success {
+    background-color: var(--status-alive-bg) !important;
+    color: var(--status-alive-text) !important;
+  }
+}
+
+// Titles
+h1, h2, h3 {
+  color: var(--card-foreground) !important;
+}
+
+// Text Colors
+.text-muted {
+  color: var(--muted-foreground) !important;
+}
+
+.fw-semibold {
+  color: var(--card-foreground) !important;
+}
+
+// Icons
+.bi {
+  &.text-primary {
+    color: var(--primary) !important;
+  }
+
+  &.text-success {
+    color: var(--status-alive-bg) !important;
+  }
+
+  &.text-info {
+    color: rgb(0, 181, 204) !important;
+  }
+
+  &.text-danger {
+    color: var(--destructive) !important;
+  }
+
+  &.text-warning {
+    color: #f59e0b !important;
+  }
+}
+
+// Buttons
+.btn-outline-danger {
+  color: var(--destructive) !important;
+  border-color: var(--destructive) !important;
+
+  &:hover {
+    background-color: var(--destructive) !important;
+    color: white !important;
+  }
+}
+
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-warning {
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+  }
+}
+
+// Quick Actions
+.quick-actions-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+// Loading Spinner
+.spinner-border {
+  border-color: var(--primary);
+  border-right-color: transparent;
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+
+  .image-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}

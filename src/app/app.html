@@ -1,3 +1,7 @@
-<app-sidebar>
+@if (showSidebar()) {
+  <app-sidebar>
+    <router-outlet />
+  </app-sidebar>
+} @else {
   <router-outlet />
-</app-sidebar>
+}

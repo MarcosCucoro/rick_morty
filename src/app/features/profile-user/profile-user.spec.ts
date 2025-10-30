@@ -1,23 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CharacterList } from './character-list';
+import { ProfileUser } from './profile-user';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
-describe('CharacterList', () => {
-  let component: CharacterList;
-  let fixture: ComponentFixture<CharacterList>;
+describe('ProfileUser', () => {
+  let component: ProfileUser;
+  let fixture: ComponentFixture<ProfileUser>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharacterList],
+      imports: [ProfileUser],
       providers: [
         provideHttpClient(),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideRouter([])
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CharacterList);
+    fixture = TestBed.createComponent(ProfileUser);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
