@@ -10,36 +10,19 @@
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(0, 181, 204, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(151, 206, 76, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(151, 206, 76, 0.05) 0%, transparent 30%);
-    background-size: cover, 100% 100%, 100% 100%, 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(0, 181, 204, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(151, 206, 76, 0.1) 0%, transparent 50%);
     opacity: 0.15;
-    filter: blur(1px);
     animation: backgroundShift 20s ease-in-out infinite;
   }
 
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-      radial-gradient(2px 2px at 20% 30%, white, transparent),
-      radial-gradient(2px 2px at 60% 70%, white, transparent),
-      radial-gradient(1px 1px at 50% 50%, white, transparent),
-      radial-gradient(1px 1px at 80% 10%, white, transparent),
-      radial-gradient(2px 2px at 90% 60%, white, transparent),
-      radial-gradient(1px 1px at 33% 80%, white, transparent);
+    inset: 0;
+    background-image: radial-gradient(2px 2px at 20% 30%, white, transparent),
+                      radial-gradient(1px 1px at 50% 50%, white, transparent);
     background-size: 200% 200%;
     animation: stars 3s ease infinite;
     opacity: 0.5;
@@ -47,31 +30,18 @@
 }
 
 @keyframes backgroundShift {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
 }
 
 @keyframes stars {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
   z-index: 1;
 }
@@ -84,8 +54,7 @@
 
 .hero-title {
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(0, 181, 204, 0.5),
-               0 0 40px rgba(0, 181, 204, 0.3);
+  text-shadow: 0 0 20px rgba(0, 181, 204, 0.5);
   animation: titleGlow 2s ease-in-out infinite;
 
   .text-primary {
@@ -95,14 +64,8 @@
 }
 
 @keyframes titleGlow {
-  0%, 100% {
-    text-shadow: 0 0 20px rgba(0, 181, 204, 0.5),
-                 0 0 40px rgba(0, 181, 204, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 30px rgba(0, 181, 204, 0.8),
-                 0 0 60px rgba(0, 181, 204, 0.5);
-  }
+  0%, 100% { text-shadow: 0 0 20px rgba(0, 181, 204, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(0, 181, 204, 0.8); }
 }
 
 .hero-subtitle {
@@ -127,8 +90,7 @@
   border: 3px solid var(--sidebar-primary);
   border-radius: 50%;
   animation: portalSpin 3s linear infinite;
-  box-shadow: 0 0 20px var(--sidebar-primary),
-              inset 0 0 20px var(--sidebar-primary);
+  box-shadow: 0 0 20px var(--sidebar-primary);
 }
 
 .portal-ring-2 {
@@ -137,26 +99,16 @@
   border-color: var(--sidebar-accent);
   animation-duration: 2s;
   animation-direction: reverse;
-  box-shadow: 0 0 15px var(--sidebar-accent),
-              inset 0 0 15px var(--sidebar-accent);
 }
 
 .portal-ring-3 {
   width: 40px;
   height: 40px;
-  border-color: var(--sidebar-primary);
   animation-duration: 1.5s;
-  box-shadow: 0 0 10px var(--sidebar-primary),
-              inset 0 0 10px var(--sidebar-primary);
 }
 
 @keyframes portalSpin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .features-section {
@@ -171,15 +123,7 @@
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 181, 204, 0.2) !important;
-
-    .feature-icon i {
-      transform: scale(1.1);
-    }
   }
-}
-
-.feature-icon i {
-  transition: transform 0.3s ease;
 }
 
 .stats-section {
@@ -191,12 +135,8 @@
 .stat-card {
   padding: 2rem 1rem;
 
-  i {
-    transition: transform 0.3s ease;
-  }
-
   &:hover i {
-    transform: scale(1.2) rotate(5deg);
+    transform: scale(1.2);
   }
 }
 
@@ -209,36 +149,6 @@
   border: 2px solid var(--sidebar-primary) !important;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(0, 181, 204, 0.1) 50%,
-      transparent 70%
-    );
-    animation: shine 3s infinite;
-  }
-
-  .card-body {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-@keyframes shine {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .btn-primary {
@@ -248,7 +158,6 @@
 
   &:hover {
     background: var(--sidebar-accent);
-    color: var(--muted-foreground);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0, 181, 204, 0.4) !important;
   }
@@ -260,57 +169,20 @@
 
   &:hover {
     background: var(--sidebar-primary);
-    border-color: var(--sidebar-primary);
-    color: var(--sidebar-foreground);
     transform: translateY(-2px);
   }
 }
 
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem !important;
-  }
-
-  .hero-subtitle {
-    font-size: 1.2rem !important;
-  }
-
-  .portal-container {
-    width: 100px;
-    height: 100px;
-
-    .portal-ring {
-      width: 70px;
-      height: 70px;
-    }
-
-    .portal-ring-2 {
-      width: 50px;
-      height: 50px;
-    }
-
-    .portal-ring-3 {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  .stat-card h3 {
-    font-size: 2rem !important;
-  }
+  .hero-title { font-size: 2.5rem !important; }
+  .hero-subtitle { font-size: 1.2rem !important; }
+  .portal-container { width: 100px; height: 100px; }
+  .portal-ring { width: 70px; height: 70px; }
+  .portal-ring-2 { width: 50px; height: 50px; }
+  .portal-ring-3 { width: 30px; height: 30px; }
 }
 
 @media (max-width: 576px) {
-  .hero-section {
-    min-height: 80vh;
-  }
-
-  .hero-title {
-    font-size: 2rem !important;
-  }
-
-  .btn-lg {
-    padding: 0.75rem 2rem !important;
-    font-size: 1rem !important;
-  }
+  .hero-section { min-height: 80vh; }
+  .hero-title { font-size: 2rem !important; }
 }
