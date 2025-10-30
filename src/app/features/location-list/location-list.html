@@ -29,9 +29,10 @@
     </div>
   }
 
-  <!-- Table -->
+  <!-- Desktop Table / Mobile Cards -->
   @if (!loading() && !error() && locations().length > 0) {
-    <div class="card shadow-sm rounded-4 border-0">
+    <!-- Desktop Table View -->
+    <div class="card shadow-sm rounded-4 border-0 d-none d-md-block">
       <div class="card-body p-0">
         <div class="table-responsive">
           <table class="table table-hover align-middle mb-0">
@@ -62,6 +63,32 @@
           </table>
         </div>
       </div>
+    </div>
+
+    <!-- Mobile Card View -->
+    <div class="row d-md-none g-3">
+      @for (location of locations(); track location.id) {
+        <div class="col-6">
+          <div class="card location-card shadow-sm h-100 border-0">
+            <div class="card-body p-3">
+              <div class="location-icon mb-2">
+                <i class="bi bi-geo-alt-fill fs-3"></i>
+              </div>
+              <h6 class="card-title mb-2 text-truncate fw-bold">{{ location.name }}</h6>
+              <p class="card-text small mb-1">
+                <span class="text-muted">Type:</span>
+                <span class="fw-semibold d-block">{{ location.type }}</span>
+              </p>
+              <p class="card-text small text-muted mb-3">{{ location.dimension }}</p>
+              <button
+                class="btn btn-outline-info btn-sm w-100"
+                [routerLink]="['/location', location.id]">
+                <i class="bi bi-eye-fill me-1"></i>View
+              </button>
+            </div>
+          </div>
+        </div>
+      }
     </div>
 
     <!-- Loading More -->

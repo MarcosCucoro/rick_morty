@@ -29,9 +29,10 @@
     </div>
   }
 
-  <!-- Table -->
+  <!-- Desktop Table / Mobile Cards -->
   @if (!loading() && !error() && characters().length > 0) {
-    <div class="card shadow-sm rounded-4 border-0">
+    <!-- Desktop Table View -->
+    <div class="card shadow-sm rounded-4 border-0 d-none d-md-block">
       <div class="card-body p-0">
         <div class="table-responsive">
           <table class="table table-hover align-middle mb-0">
@@ -78,6 +79,35 @@
           </table>
         </div>
       </div>
+    </div>
+
+    <!-- Mobile Card View -->
+    <div class="row d-md-none g-3">
+      @for (character of characters(); track character.id) {
+        <div class="col-6">
+          <div class="card character-card shadow-sm h-100 border-0">
+            <img [src]="character.image" [alt]="character.name" class="card-img-top">
+            <div class="card-body p-2">
+              <h6 class="card-title mb-2 text-truncate">{{ character.name }}</h6>
+              <div class="mb-2">
+                <span
+                  class="badge status-badge w-100"
+                  [class.badge-alive]="character.status === 'Alive'"
+                  [class.badge-dead]="character.status === 'Dead'"
+                  [class.badge-unknown]="character.status === 'unknown'">
+                  {{ character.status }}
+                </span>
+              </div>
+              <p class="card-text small text-muted mb-2">{{ character.species }}</p>
+              <button
+                class="btn btn-outline-info btn-sm w-100"
+                [routerLink]="['/character', character.id]">
+                <i class="bi bi-eye-fill me-1"></i>View
+              </button>
+            </div>
+          </div>
+        </div>
+      }
     </div>
 
     <!-- Loading More -->

@@ -91,6 +91,11 @@
   }
 }
 
+.drop-resp {
+  left: auto;
+  right: 0;
+}
+
 .content-wrapper {
   min-height: calc(100vh - 68px);
   background-color: var(--background);
