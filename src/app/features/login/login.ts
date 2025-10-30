@@ -25,7 +25,7 @@ export class Login {
     const success = this.authService.login(this.username, this.password);
 
     if(success) {
-      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
       this.router.navigate([returnUrl]);
     } else {
       this.errorMessage = 'Invalid username or password.';

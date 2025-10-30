@@ -14,10 +14,8 @@ export class App {
   showSidebar = signal(false);
 
   constructor(private router: Router) {
-    // Verifica a URL inicial
     this.updateSidebarVisibility(this.router.url);
 
-    // Monitora mudanças de rota
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
@@ -26,7 +24,6 @@ export class App {
   }
 
   private updateSidebarVisibility(url: string): void {
-    // Esconde o sidebar apenas na rota de login
     this.showSidebar.set(!url.includes('/login'));
   }
 }
