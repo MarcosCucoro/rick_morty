@@ -165,11 +165,12 @@
 
 .btn-outline-primary {
   border-color: var(--sidebar-primary);
-  color: var(--sidebar-primary);
+  color: var(--sidebar-foreground);
 
   &:hover {
     background: var(--sidebar-primary);
     transform: translateY(-2px);
+    color: var(--secondary-foreground);
   }
 }
 
