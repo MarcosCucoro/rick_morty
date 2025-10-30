@@ -1,5 +1,4 @@
 <div class="container-fluid py-4">
-  <!-- Header com botão voltar -->
   <div class="row mb-4">
     <div class="col-12">
       <button type="button" class="btn btn-outline-info" (click)="goBack()"><i
@@ -7,7 +6,6 @@
     </div>
   </div>
 
-  <!-- Loading -->
   @if (loading()) {
   <div class="text-center py-5">
     <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
@@ -17,7 +15,6 @@
   </div>
   }
 
-  <!-- Error -->
   @if (error() && !loading()) {
   <div class="text-center py-5">
     <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 4rem;"></i>
@@ -28,7 +25,6 @@
   </div>
   }
 
-  <!-- episode Details -->
   @if (episode() && !loading()) {
   <div class="card shadow-sm border-0 rounded-4">
     <div class="card-body p-4">

@@ -37,10 +37,8 @@ export class ThemeService {
 
   private applyTheme(isDark: boolean): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Bootstrap 5.3+ usa data-bs-theme
       document.documentElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
 
-      // Também adiciona classe para suporte a variáveis customizadas
       if (isDark) {
         document.body.classList.add('dark');
       } else {

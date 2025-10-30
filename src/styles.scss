@@ -1,8 +1,5 @@
-// Import Bootstrap completo (resolve as variáveis faltantes)
 @import 'bootstrap/scss/bootstrap';
 
-// Bootstrap Variables Override (antes do import)
-// Definir cores customizadas do Rick and Morty
 $primary: #00b5cc;
 $secondary: #97ce4c;
 $success: #97ce4c;
@@ -12,24 +9,18 @@ $info: #00b5cc;
 $light: #f0f4f8;
 $dark: #0f172a;
 
-// Body
 $body-bg: #f0f4f8;
 $body-color: #1a202c;
 
-// Components
 $border-radius: 0.625rem;
 $border-radius-sm: 0.5rem;
 $border-radius-lg: 1rem;
 $border-radius-xl: 1.5rem;
 
-// Shadows
 $box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 $box-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
 $box-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
 
-
-
-// Custom CSS Variables for Light/Dark Themes
 :root {
   --font-size: 16px;
   --background: #f0f4f8;
@@ -52,7 +43,6 @@ $box-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
   --sidebar-primary: #00b5cc;
   --sidebar-border: #cbd5e1;
 
-  // Status colors
   --status-alive-bg: #97ce4c;
   --status-alive-text: #000000;
   --status-dead-bg: #ef4444;
@@ -61,7 +51,6 @@ $box-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
   --status-unknown-text: #ffffff;
 }
 
-// Dark Theme
 [data-bs-theme="dark"] {
   --background: #0f172a;
   --foreground: #f1f5f9;
@@ -83,13 +72,11 @@ $box-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
   --sidebar-primary: #00d4ff;
   --sidebar-border: #334155;
 
-  // Bootstrap overrides for dark mode
   --bs-body-bg: var(--background);
   --bs-body-color: var(--foreground);
   --bs-border-color: var(--border);
 }
 
-// Global Styles
 html {
   font-size: var(--font-size);
 }
@@ -104,7 +91,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// Bootstrap Component Overrides
 .card {
   background-color: var(--card);
   color: var(--card-foreground);
@@ -157,23 +143,19 @@ body {
   border-right: 1px solid var(--sidebar-border);
 }
 
-// Text utilities
 .text-muted {
   color: var(--muted-foreground) !important;
 }
 
-// Border utilities
 .border {
   border-color: var(--border) !important;
 }
 
-// Spinner
 .spinner-border {
   border-color: var(--primary);
   border-right-color: transparent;
 }
 
-// Custom utilities
 .bg-card {
   background-color: var(--card) !important;
 }

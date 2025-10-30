@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { Sidebar } from "./core/layouts/sidebar/sidebar";
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { filter } from 'rxjs';
 
 @Component({
@@ -13,14 +13,19 @@ import { filter } from 'rxjs';
 export class App {
   showSidebar = signal(false);
 
-  constructor(private router: Router) {
-    this.updateSidebarVisibility(this.router.url);
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateSidebarVisibility(this.router.url);
 
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.updateSidebarVisibility(event.url);
-    });
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe((event: any) => {
+        this.updateSidebarVisibility(event.url);
+      });
+    }
   }
 
   private updateSidebarVisibility(url: string): void {

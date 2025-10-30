@@ -1,12 +1,8 @@
-// Profile User - Bootstrap Version
-
-// Container
 .container-fluid {
   max-width: 1400px;
   min-height: calc(100vh - 68px);
 }
 
-// Back Button
 .btn-link {
   color: var(--foreground) !important;
   font-size: 1rem;
@@ -16,7 +12,6 @@
   }
 }
 
-// Card
 .card {
   background-color: var(--card) !important;
   color: var(--card-foreground) !important;
@@ -24,7 +19,6 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-// Avatar Section
 .image-section {
   .avatar-container {
     display: flex;
@@ -46,7 +40,6 @@
   }
 }
 
-// Badges
 .badge {
   font-size: 0.875rem;
 
@@ -61,12 +54,10 @@
   }
 }
 
-// Titles
 h1, h2, h3 {
   color: var(--card-foreground) !important;
 }
 
-// Text Colors
 .text-muted {
   color: var(--muted-foreground) !important;
 }
@@ -75,7 +66,6 @@ h1, h2, h3 {
   color: var(--card-foreground) !important;
 }
 
-// Icons
 .bi {
   &.text-primary {
     color: var(--primary) !important;
@@ -98,7 +88,6 @@ h1, h2, h3 {
   }
 }
 
-// Buttons
 .btn-outline-danger {
   color: var(--destructive) !important;
   border-color: var(--destructive) !important;
@@ -118,20 +107,17 @@ h1, h2, h3 {
   }
 }
 
-// Quick Actions
 .quick-actions-section {
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
 }
 
-// Loading Spinner
 .spinner-border {
   border-color: var(--primary);
   border-right-color: transparent;
 }
 
-// Responsive
 @media (max-width: 991px) {
   .display-5 {
     font-size: 2rem;

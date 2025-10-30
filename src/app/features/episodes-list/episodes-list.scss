@@ -1,13 +1,9 @@
-// Character List - Bootstrap Version
-
-// Container
 .container-fluid {
   max-width: 1600px;
   min-height: calc(100vh - 64px);
   background-color: var(--background);
 }
 
-// Header
 h1.display-4 {
   color: var(--foreground) !important;
   font-size: 1.5rem;
@@ -18,7 +14,6 @@ h1.display-4 {
   font-size: 1rem;
 }
 
-// Card Container
 .card {
   background-color: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -29,12 +24,10 @@ h1.display-4 {
   }
 }
 
-// Table
 .table {
   background-color: var(--card) !important;
   color: var(--card-foreground) !important;
 
-  // Override Bootstrap's table-light
   thead.table-light {
     background-color: var(--card) !important;
     border-color: var(--border) !important;
@@ -66,18 +59,15 @@ h1.display-4 {
   }
 }
 
-// Table Responsive Wrapper
 .table-responsive {
   background-color: var(--card) !important;
 }
 
-// Avatar Image
 .rounded-circle {
   border-color: var(--border) !important;
   border-width: 2px !important;
 }
 
-// Status Badges
 .status-badge {
   font-size: 0.75rem;
   font-weight: 600;
@@ -88,7 +78,6 @@ h1.display-4 {
 
 }
 
-// View Button
 .btn-primary {
   background-color: var(--primary) !important;
   border-color: var(--primary) !important;
@@ -105,18 +94,15 @@ h1.display-4 {
   }
 }
 
-// Loading States
 .spinner-border {
   border-color: var(--primary) !important;
   border-right-color: transparent !important;
 }
 
-// Text utilities override
 .text-muted {
   color: var(--muted-foreground) !important;
 }
 
-// Alert Error
 .alert-danger {
   background-color: rgba(239, 68, 68, 0.1) !important;
   border-color: var(--destructive) !important;
@@ -132,7 +118,6 @@ h1.display-4 {
   }
 }
 
-// Mobile Card View
 .episode-card {
   background-color: var(--card) !important;
   border: 1px solid var(--border) !important;
@@ -186,7 +171,6 @@ h1.display-4 {
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
   h1.display-4 {
     font-size: 1.25rem;

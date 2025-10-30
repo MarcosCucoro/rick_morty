@@ -66,7 +66,6 @@ describe('SearchService', () => {
       service.search$.subscribe((term) => {
         emittedValues.push(term);
 
-        // Após receber ambos os valores
         if (emittedValues.length === 2) {
           expect(emittedValues[0]).toBe('Rick');
           expect(emittedValues[1]).toBe('');

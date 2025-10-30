@@ -1,12 +1,10 @@
 <div class="container-fluid py-4">
-  <!-- Header com botão voltar -->
   <div class="row mb-4">
     <div class="col-12">
       <button type="button" class="btn btn-outline-info" (click)="goBack()"><i class="bi bi-arrow-left me-2"></i>Back</button>
     </div>
   </div>
 
-  <!-- Loading -->
   @if (loading()) {
     <div class="text-center py-5">
       <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
@@ -16,7 +14,6 @@
     </div>
   }
 
-  <!-- Error -->
   @if (error() && !loading()) {
     <div class="text-center py-5">
       <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 4rem;"></i>
@@ -27,12 +24,10 @@
     </div>
   }
 
-  <!-- Character Details -->
   @if (character() && !loading()) {
     <div class="card shadow-sm border-0 rounded-4">
       <div class="card-body p-4">
         <div class="row g-4">
-          <!-- Imagem -->
           <div class="col-12 col-lg-4 col-xl-3">
             <div class="image-section">
               <img
@@ -46,9 +41,7 @@
             </div>
           </div>
 
-          <!-- Informações -->
           <div class="col-12 col-lg-8 col-xl-9">
-            <!-- Nome e Status -->
             <div class="mb-4">
               <h1 class="display-5 fw-bold mb-3">{{ character()!.name }}</h1>
               <div class="d-flex flex-wrap gap-2">
@@ -65,9 +58,7 @@
               </div>
             </div>
 
-            <!-- Grid de Informações em 2 colunas -->
             <div class="row g-4 mb-4">
-              <!-- Coluna 1: Information -->
               <div class="col-12 col-md-6">
                 <h3 class="h5 fw-semibold mb-3">Information</h3>
 
@@ -82,7 +73,6 @@
                 </div>
               </div>
 
-              <!-- Coluna 2: Locations -->
               <div class="col-12 col-md-6">
                 <h3 class="h5 fw-semibold mb-3">Locations</h3>
 
@@ -104,7 +94,6 @@
               </div>
             </div>
 
-            <!-- Episodes -->
             <div class="episodes-section">
               <h3 class="h5 fw-semibold mb-2">Episodes</h3>
               <p class="small text-muted mb-3">Appeared in {{ character()!.episode.length }} episodes</p>

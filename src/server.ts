@@ -12,7 +12,7 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 
 export const config = {
-  renderMode: 'server', // evita prerender automático
+  renderMode: 'server',
 };
 
 const angularApp = new AngularNodeAppEngine();

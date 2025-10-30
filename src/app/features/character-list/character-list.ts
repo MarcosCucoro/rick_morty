@@ -22,10 +22,8 @@ export class CharacterList implements OnInit, AfterViewInit {
   private searchService = inject(SearchService);
   private destroyRef = inject(DestroyRef);
 
-  // ViewChild para o elemento de scroll
   scrollTrigger = viewChild<ElementRef>('scrollTrigger');
 
-  // Signals para gerenciar estado
   characters = signal<Character[]>([]);
   loading = signal<boolean>(false);
   loadingMore = signal<boolean>(false);
@@ -33,7 +31,6 @@ export class CharacterList implements OnInit, AfterViewInit {
   hasMore = signal<boolean>(true);
   searchTerm = signal<string>('');
 
-  // Paginação
   private currentPage = 1;
   private totalPages = 1;
 
@@ -49,8 +46,8 @@ export class CharacterList implements OnInit, AfterViewInit {
   private setupSearchListener(): void {
     this.searchService.search$
       .pipe(
-        debounceTime(500), // Espera 500ms após o usuário parar de digitar
-        distinctUntilChanged(), // Só emite se o valor mudou
+        debounceTime(500),
+        distinctUntilChanged(),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((term) => {
@@ -65,7 +62,6 @@ export class CharacterList implements OnInit, AfterViewInit {
     this.currentPage = 1;
 
     if (!term.trim()) {
-      // Se a busca estiver vazia, carrega todos os Characters
       this.loadCharacters();
       return;
     }
@@ -96,7 +92,6 @@ export class CharacterList implements OnInit, AfterViewInit {
     const trigger = this.scrollTrigger();
     if (!trigger) {
       console.warn('[CharacterList] Scroll trigger element not found');
-      // Tenta novamente após um delay
       setTimeout(() => this.setupInfiniteScroll(), 500);
       return;
     }
@@ -122,14 +117,13 @@ export class CharacterList implements OnInit, AfterViewInit {
       },
       {
         threshold: 0.1,
-        rootMargin: '300px' // Aumentado para carregar antes
+        rootMargin: '300px'
       }
     );
 
     observer.observe(trigger.nativeElement);
     console.log('[CharacterList] Observer attached to element');
 
-    // Cleanup quando o componente for destruído
     this.destroyRef.onDestroy(() => {
       console.log('[CharacterList] Cleaning up observer');
       observer.disconnect();
@@ -176,14 +170,13 @@ export class CharacterList implements OnInit, AfterViewInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          // Adiciona os novos Characters aos existentes
           this.characters.update(current => [...current, ...response.results]);
           this.hasMore.set(this.currentPage < this.totalPages);
           this.loadingMore.set(false);
         },
         error: (err) => {
           console.error('Erro ao carregar mais Characters:', err);
-          this.currentPage--; // Volta para a página anterior em caso de erro
+          this.currentPage--;
           this.loadingMore.set(false);
         }
       });

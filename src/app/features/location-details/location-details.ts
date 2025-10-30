@@ -20,7 +20,6 @@ export class LocationDetails implements OnInit {
   error = signal<string | null>(null);
 
   ngOnInit(): void {
-    // Captura o ID da rota
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadlocationDetails(Number(id));
@@ -53,13 +52,8 @@ export class LocationDetails implements OnInit {
     }
   }
 
-  // getFirstEpisodes(): string[] {
-  //   const episodes = this.location()?.episode || [];
-  //   return episodes.slice(0, 12);
-  // }
-
-  getEpisodeNumber(episodeUrl: string): string {
-    return episodeUrl.split('/').pop() || '';
+  getLocationNumber(locationUrl: string): string {
+    return locationUrl.split('/').pop() || '';
   }
 
 }

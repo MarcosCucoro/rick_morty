@@ -20,7 +20,6 @@ export class EpisodeDetails {
   error = signal<string | null>(null);
 
   ngOnInit(): void {
-    // Captura o ID da rota
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadepisodeDetails(Number(id));
@@ -52,11 +51,6 @@ export class EpisodeDetails {
       this.loadepisodeDetails(Number(id));
     }
   }
-
-  // getFirstEpisodes(): string[] {
-  //   const episodes = this.episode()?.episode || [];
-  //   return episodes.slice(0, 12);
-  // }
 
   getEpisodeNumber(episodeUrl: string): string {
     return episodeUrl.split('/').pop() || '';

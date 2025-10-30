@@ -18,10 +18,8 @@ export class EpisodesList {
   private searchService = inject(SearchService);
   private destroyRef = inject(DestroyRef);
 
-  // ViewChild para o elemento de scroll
   scrollTrigger = viewChild<ElementRef>('scrollTrigger');
 
-  // Signals para gerenciar estado
   episodes = signal<Episode[]>([]);
   loading = signal<boolean>(false);
   loadingMore = signal<boolean>(false);
@@ -29,7 +27,6 @@ export class EpisodesList {
   hasMore = signal<boolean>(true);
   searchTerm = signal<string>('');
 
-  // Paginação
   private currentPage = 1;
   private totalPages = 1;
 
@@ -45,8 +42,8 @@ export class EpisodesList {
   private setupSearchListener(): void {
     this.searchService.search$
       .pipe(
-        debounceTime(500), // Espera 500ms após o usuário parar de digitar
-        distinctUntilChanged(), // Só emite se o valor mudou
+        debounceTime(500),
+        distinctUntilChanged(),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((term) => {
@@ -61,7 +58,6 @@ export class EpisodesList {
     this.currentPage = 1;
 
     if (!term.trim()) {
-      // Se a busca estiver vazia, carrega todos os Characters
       this.loadEpisodes();
       return;
     }
@@ -121,7 +117,6 @@ export class EpisodesList {
 
     observer.observe(trigger.nativeElement);
 
-    // Cleanup quando o componente for destruído
     this.destroyRef.onDestroy(() => {
       observer.disconnect();
     });
@@ -143,8 +138,8 @@ export class EpisodesList {
           this.loading.set(false);
         },
         error: (err) => {
-          console.error('Erro ao carregar Characters:', err);
-          this.error.set('Erro ao carregar Characters. Tente novamente.');
+          console.error('Erro ao carregar Episodes:', err);
+          this.error.set('Erro ao carregar Episodes. Tente novamente.');
           this.loading.set(false);
         }
       });
@@ -168,14 +163,13 @@ export class EpisodesList {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          // Adiciona os novos Characters aos existentes
           this.episodes.update(current => [...current, ...response.results]);
           this.hasMore.set(this.currentPage < this.totalPages);
           this.loadingMore.set(false);
         },
         error: (err) => {
-          console.error('Erro ao carregar mais Characters:', err);
-          this.currentPage--; // Volta para a página anterior em caso de erro
+          console.error('Erro ao carregar mais Episodes:', err);
+          this.currentPage--;
           this.loadingMore.set(false);
         }
       });

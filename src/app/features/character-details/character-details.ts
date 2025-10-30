@@ -22,7 +22,6 @@ export class CharacterDetails implements OnInit {
   error = signal<string | null>(null);
 
   ngOnInit(): void {
-    // Captura o ID da rota
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadCharacterDetails(Number(id));

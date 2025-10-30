@@ -1,12 +1,8 @@
-// Character Details - Bootstrap Version
-
-// Container
 .container-fluid {
   max-width: 1400px;
   min-height: calc(100vh - 68px);
 }
 
-// Back Button
 .btn-link {
   color: var(--foreground) !important;
   font-size: 1rem;
@@ -16,7 +12,6 @@
   }
 }
 
-// Card
 .card {
   background-color: var(--card) !important;
   color: var(--card-foreground) !important;
@@ -29,18 +24,13 @@
   }
 }
 
-
-
-// Image Section
 .image-section {
   img {
     border: 1px solid var(--border);
   }
 }
 
-// Status Badges
 .status-badge {
-  // background-color: var(--status-alive-bg) !important;
   color: var(--status-alive-text) !important;
   font-size: 0.875rem;
   border: 1px solid var(--sidebar-border);
@@ -58,7 +48,6 @@
   font-size: 0.875rem;
 }
 
-// Titles
 h1 {
   color: var(--card-foreground) !important;
 }
@@ -67,7 +56,6 @@ h3 {
   color: var(--card-foreground) !important;
 }
 
-// Text Colors
 .text-muted {
   color: var(--muted-foreground) !important;
 }
@@ -76,7 +64,6 @@ h3 {
   color: var(--card-foreground) !important;
 }
 
-// Icons
 .bi {
   &.text-primary {
     color: var(--primary) !important;
@@ -87,7 +74,6 @@ h3 {
   }
 }
 
-// Episode Badges
 .episode-badge {
   background-color: rgba(0, 181, 204, 0.1) !important;
   color: var(--primary) !important;
@@ -102,13 +88,11 @@ h3 {
   font-weight: 600;
 }
 
-// Loading Spinner
 .spinner-border {
   border-color: var(--primary);
   border-right-color: transparent;
 }
 
-// Responsive
 @media (max-width: 991px) {
   .display-5 {
     font-size: 2rem;

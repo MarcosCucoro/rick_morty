@@ -1,5 +1,4 @@
 <div class="container-fluid py-4">
-  <!-- Header -->
   <div class="row mb-3">
     <div class="col-12">
       <h1 class="display-4 fw-bold text-foreground">Characters</h1>
@@ -7,7 +6,6 @@
     </div>
   </div>
 
-  <!-- Loading inicial -->
   @if (loading()) {
     <div class="text-center py-5">
       <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
@@ -17,7 +15,6 @@
     </div>
   }
 
-  <!-- Error -->
   @if (error()) {
     <div class="alert alert-danger text-center py-5" role="alert">
       <i class="bi bi-exclamation-triangle-fill fs-1 mb-3 d-block"></i>
@@ -29,9 +26,7 @@
     </div>
   }
 
-  <!-- Desktop Table / Mobile Cards -->
   @if (!loading() && !error() && characters().length > 0) {
-    <!-- Desktop Table View -->
     <div class="card shadow-sm rounded-4 border-0 d-none d-md-block">
       <div class="card-body p-0">
         <div class="table-responsive">
@@ -81,7 +76,6 @@
       </div>
     </div>
 
-    <!-- Mobile Card View -->
     <div class="row d-md-none g-3">
       @for (character of characters(); track character.id) {
         <div class="col-6">
@@ -110,7 +104,6 @@
       }
     </div>
 
-    <!-- Loading More -->
     @if (loadingMore()) {
       <div class="text-center py-4">
         <div class="spinner-border text-primary spinner-border-sm me-2" role="status">
@@ -120,12 +113,10 @@
       </div>
     }
 
-    <!-- Scroll Trigger -->
     @if (hasMore()) {
       <div #scrollTrigger style="height: 1px; width: 100%; margin-top: 2rem;"></div>
     }
 
-    <!-- End Message -->
     @if (!hasMore() && !loadingMore()) {
       <div class="text-center py-5">
         <h3 class="text-muted fw-semibold">🎉 You've seen all {{ characters().length }} characters!</h3>
