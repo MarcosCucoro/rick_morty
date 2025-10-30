@@ -1,0 +1,18 @@
+{
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/rick_morty",
+  "framework": "angular",
+  "ignoreCommand": "",
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 10
+    },
+    "dist/rick_morty/server/**/*.mjs": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
