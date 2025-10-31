@@ -93,20 +93,11 @@ export class LocationList implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log('[LocationList] Setting up IntersectionObserver');
-
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
-        console.log('[LocationList] Intersection event:', {
-          isIntersecting: first.isIntersecting,
-          loading: this.loading(),
-          loadingMore: this.loadingMore(),
-          hasMore: this.hasMore()
-        });
 
         if (first.isIntersecting && !this.loading() && !this.loadingMore() && this.hasMore()) {
-          console.log('[LocationList] Triggering loadMoreLocations');
           this.loadMoreLocations();
         }
       },

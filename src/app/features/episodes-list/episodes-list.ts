@@ -92,20 +92,11 @@ export class EpisodesList {
       return;
     }
 
-    console.log('[EpisodeList] Setting up IntersectionObserver');
-
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
-        console.log('[EpisodeList] Intersection event:', {
-          isIntersecting: first.isIntersecting,
-          loading: this.loading(),
-          loadingMore: this.loadingMore(),
-          hasMore: this.hasMore()
-        });
 
         if (first.isIntersecting && !this.loading() && !this.loadingMore() && this.hasMore()) {
-          console.log('[EpisodeList] Triggering loadMoreepisodes');
           this.loadMoreEpisodes();
         }
       },
@@ -131,7 +122,6 @@ export class EpisodesList {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          console.log('Total de episode: ', response);
           this.episodes.set(response.results);
           this.totalPages = response.info.pages;
           this.hasMore.set(this.currentPage < this.totalPages);

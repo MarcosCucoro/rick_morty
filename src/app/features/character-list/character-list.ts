@@ -96,22 +96,11 @@ export class CharacterList implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log('[CharacterList] Setting up IntersectionObserver');
-
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
-        console.log('[CharacterList] Intersection event:', {
-          isIntersecting: first.isIntersecting,
-          loading: this.loading(),
-          loadingMore: this.loadingMore(),
-          hasMore: this.hasMore(),
-          currentPage: this.currentPage,
-          totalPages: this.totalPages
-        });
 
         if (first.isIntersecting && !this.loading() && !this.loadingMore() && this.hasMore()) {
-          console.log('[CharacterList] Triggering loadMoreCharacters');
           this.loadMoreCharacters();
         }
       },
@@ -122,10 +111,8 @@ export class CharacterList implements OnInit, AfterViewInit {
     );
 
     observer.observe(trigger.nativeElement);
-    console.log('[CharacterList] Observer attached to element');
 
     this.destroyRef.onDestroy(() => {
-      console.log('[CharacterList] Cleaning up observer');
       observer.disconnect();
     });
   }
