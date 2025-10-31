@@ -93,14 +93,14 @@
 
 .drop-resp {
   left: auto;
-  right: 0;
+  right: -0.5rem;
 }
 
 .content-wrapper {
   min-height: calc(100vh - 68px);
   background-color: var(--background);
   padding: 0;
-  padding-top: 76px;
+  padding-top: 4rem;
 }
 
 @media (max-width: 991px) {
@@ -108,13 +108,17 @@
     font-size: 1rem;
   }
 
-  .content-wrapper {
-    padding-top: 130px;
-  }
 }
 
 @media (max-width: 576px) {
   .navbar {
     padding: 0.5rem 0;
   }
+}
+
+@media (max-width: 500px) {
+  .form-sm {
+      flex: 1;
+  }
+
 }
